@@ -1,0 +1,24 @@
+name: Auto-Merge dev → main
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [opened, synchronize]
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    if: github.base_ref == 'main' && github.head_ref == 'dev'
+
+    steps:
+      - name: Auto-merge PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.pulls.merge({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+              merge_method: 'rebase'
+            });

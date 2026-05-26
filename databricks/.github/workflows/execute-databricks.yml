@@ -1,0 +1,40 @@
+name: Execute UC Objects on Databricks
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  execute-databricks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Databricks CLI
+        run: |
+          pip install databricks-cli
+
+      - name: Set Databricks credentials
+        env:
+          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_PAT }}
+        run: |
+          mkdir -p ~/.databricks
+          echo "[DEFAULT]" > ~/.databrickscfg
+          echo "host = $DATABRICKS_HOST" >> ~/.databrickscfg
+          echo "token = $DATABRICKS_TOKEN" >> ~/.databrickscfg
+          chmod 600 ~/.databrickscfg
+
+      - name: Execute UC objects
+        run: |
+          # TODO: Find and execute UC object configs from commit
+          echo "Executing UC objects..."
+          # databricks workspace list /
+
+      - name: Update execution history
+        run: |
+          # TODO: Update Lakebase execution history table
+          echo "Updating execution history..."

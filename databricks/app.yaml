@@ -1,0 +1,14 @@
+name: uc-governance
+description: Unity Catalog Administration & Governance Tool
+
+commands:
+  dev:
+    description: Start development server
+    command: npm run dev
+  build:
+    description: Build for production
+    command: npm run build
+
+features:
+  - analytics
+  - lakebase

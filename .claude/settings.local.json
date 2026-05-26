@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh auth:*)",
+      "Bash(gh repo:*)",
+      "Bash(\"/c/Users/madhy/AppData/Local/Python/pythoncore-3.14-64/Scripts/databricks.exe\" --version)"
+    ]
+  }
+}
